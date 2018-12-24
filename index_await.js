@@ -31,7 +31,10 @@ var scraper = async () => {
     var ideaList = [];
     for (let page_no = 1; page_no <= pageCount; page_no++) {
       await page.goto(
-        `https://www.sih.gov.in/sih2019ProblemStatements?page=${page_no}`
+        `https://www.sih.gov.in/sih2019ProblemStatements?page=${page_no}`,
+        {
+          timeout: 3000000
+        }
       );
       await page.waitForSelector("#table_id_info");
       const ideaCount = await page.evaluate(() =>
