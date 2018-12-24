@@ -8,8 +8,7 @@ const success = chalk.keyword("green");
 
 var scraper = async () => {
   try {
-    let data;
-    var browser = await puppeteer.launch({ headless: true });
+    var browser = await puppeteer.launch({ headless: false });
     var page = await browser.newPage();
     page.setUserAgent(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36"
@@ -54,17 +53,27 @@ var scraper = async () => {
       //   console.log(modals[1]);
 
       for (var idea = 1; idea <= ideaCount; idea++) {
+        console.log(idea);
+
         const ideaName = await page.evaluate(idea => {
           console.log(idea);
           var ideaObject = {};
-          //   var modalDescriptions = document.querySelectorAll(
-          //     "#settings > thead > tr:nth-child(1) > td >div"
-          //   );
-          //   var modalYoutube = document.querySelectorAll(
-          //     "#settings > thead > tr:nth-child(5) > td >div"
-          //   );
-          //   ideaObject.description = modalDescriptions[idea--].innerText.trim();
-          //   ideaObject.youtubeLink = modalYoutube[idea--].innerText.trim();
+          var modalDescriptions = document.querySelectorAll(
+            "#settings > thead > tr:nth-child(1) > td >div"
+          );
+          //   console.log(modalDescriptions);
+          //   console.log(typeof modalDescriptions);
+          //   console.log(typeof modalDescriptions);
+          //   console.log(modalDescriptions[idea].innerText.trim());
+          var modalYoutube = document.querySelectorAll(
+            "#settings > thead > tr:nth-child(5) > td >a"
+          );
+          if (typeof modalDescriptions[idea] != "undefined") {
+            ideaObject.description = modalDescriptions[idea].innerText.trim();
+          }
+          if (typeof modalYoutube[idea] != "undefined") {
+            ideaObject.youtubeLink = modalYoutube[idea].innerText.trim();
+          }
           ideaObject.title = document
             .querySelector(
               `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(3)`

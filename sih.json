@@ -1,0 +1,90 @@
+[
+  {
+    "description": "Build an API for IHL users (from IHL platform) to choose/select their friends/others from facebook, LinkedIN, whatsapp, others to form a group to play a challenge like average no of steps in a month, healthy food habits, health vitals (decrease in weight/BP etc.Gamify user experience to win rewards, badges etc.",
+    "youtubeLink": "https://www.youtube.com/watch?v=HxdFjL71lmg&featur",
+    "title": "Smart body posture recognition & Guiding system",
+    "organisation": "India Health Link Pvt Ltd",
+    "category": "Software",
+    "bucket": "Healthcare & Biomedical Devices",
+    "complexity": "Complicated"
+  },
+  {
+    "description": "We envision a simple portal which shall provide real time data on how an epidemic is and can spread. Real time status and alerts will be the primary objective of this project. \n\nTo achieve this objective, we will need to build layers of crowd sourced data that will add up to provide rich real time status of an epidemic spread as it happens.",
+    "youtubeLink": "https://www.youtube.com/watch?v=CZ-yRbfrMT4&featur",
+    "title": "Personal Health Influencers through social network",
+    "organisation": "India Health Link Pvt Ltd",
+    "category": "Software",
+    "bucket": "Software - Web App development",
+    "complexity": "Complicated"
+  },
+  {
+    "description": "intent is to a design a smart cabin & cooling system for the tractor that would employ a very thoughtful design of a. cabin ensuring all round visibility b. Alternatively, new innovative concepts of cooling without a cabin can also be thought of, cooled seat c. Smart cooling system d. a smart cooling algorithm e. low cost design f. carbon footprint should be at least 50% less and should be compatible for future electric tractors",
+    "youtubeLink": "https://www.youtube.com/watch?v=8kazDWnvBkI",
+    "title": "Real Time Mapping of Epidemic Spread",
+    "organisation": "Thermo Fisher",
+    "category": "Software",
+    "bucket": "Healthcare & Biomedical Devices",
+    "complexity": "Complex"
+  },
+  {
+    "description": "Soil Health and Soil Mapping is important for the plant growth and productivity of the Farming. There is an important need to determine NPK (Macro), Micro Nutrients, Electrical conductivity, soil compactness, Organic Content, Soil Moisture, PH value to determine the soil health and map it against the GPS location. GPS tagged information will help user to correct amount of fertilizer at correct location. The soil health data card is very important parameter to monitor for every crop season.",
+    "youtubeLink": "https://www.youtube.com/watch?v=lJ5xdAV-NKk",
+    "title": "Low cost & smart cooling system for tractor cabin",
+    "organisation": "Mahindra&Mahindra(FarmEq)",
+    "category": "Hardware",
+    "bucket": "Agriculture and Rural Development",
+    "complexity": "Complicated"
+  },
+  {
+    "description": "How can a farmer gain access to all the elements of his farming cycle?one stop shop where he has access to information from different aggregators, for retailing , leasing & finally taking his produce to the nearest mandi. Application to provide a means of easy transaction for all his farming activities and his personal expenses. Agri credit should help him buy/lease Farm Machinery & have access to all the local vendors for his plantation needs including expert advice from the local university",
+    "youtubeLink": "https://www.youtube.com/watch?v=oSe4T8WKbC0",
+    "title": "Low cost on the go soil sensing and mapping attached to implements",
+    "organisation": "Mahindra&Mahindra(FarmEq)",
+    "category": "Hardware",
+    "bucket": "Smart Communication",
+    "complexity": "Complicated"
+  },
+  {
+    "description": "The machine should operate on a permanent raised bed of 100 cm width which can sow seeds with fertilizer in 5 rows at 25 cm apart.  Seeds - rice, gram, pea, groundnut, bajra, maize, Val, etc. Mechanism should be preferably impact dibbler or it should make very thin slit of max depth of 30-40 cm. It should cover the seeds after sowing and be operated by 1-2 people either manually or by 1 hp power and sow 0.6 to 1 ha in 8 hours. Potential of it being self-driven to get higher speed.",
+    "youtubeLink": "https://www.youtube.com/watch?v=o7TUzoTFuQA&featur",
+    "title": "Uplifting the Farmer through a Connected Ecosystem",
+    "organisation": "Mahindra&Mahindra(FarmEq)",
+    "category": "Software",
+    "bucket": "Software - Mobile App development",
+    "complexity": "Complex"
+  },
+  {
+    "description": "To concentrate effluent generally evaporation technic is used. During evaporation plant operation, due to inorganic & organic contents in effluent, fouling occurs on surface of tubes after some duration. This reduces the capacity of plant & need to be cleaned by Cleaning In Place (CIP). If we find the suitable Non-fouling metallic surfaces / coatings for tubes, we can reduce the CIP chemical & water consumption & down time of cleaning. This can give benefit for plant operation and water saving.",
+    "youtubeLink": "https://www.youtube.com/watch?v=7M9w842jtfQ&featur",
+    "title": "A seed sowing machine for Zero-Till farming",
+    "organisation": "Saguna Rural Foundation",
+    "category": "Hardware",
+    "bucket": "Agriculture and Rural Development",
+    "complexity": "Complex"
+  },
+  {
+    "description": "During various unit operations vapors are getting generated for separation of water, which are then condensed. While handling the effluents, process mixtures, the volatile acids are coming out along with vapors and then in condensate, which is generally colorless. For recycle & reuse of this separated water, we have to treat this to remove volatile acids (main component Acetic Acid). If we innovate / develop techno-economic solution for removal of such volatile acids, lot of water will be reused",
+    "youtubeLink": "https://www.youtube.com/watch?v=XeS3239poaw&featur",
+    "title": "Development of Non-fouling metallic surfaces/coats",
+    "organisation": "Praj Industries Limited.",
+    "category": "Hardware",
+    "bucket": "Clean Water",
+    "complexity": "Simple"
+  },
+  {
+    "description": "In nature we can see lot of Biomass & which can be used for various applications. But for processing this biomass for particular use, we need to do size reduction. At present there is equipment available which can do this, but the power consumption for unit operation is very high. This increases the operating cost of that plant. If we can design / develop size reduction equipment with low power consumption, then it will benefit all biomass based industries.",
+    "youtubeLink": "https://www.youtube.com/watch?v=tcnqXwnYKQg&featur",
+    "title": "Removal of Volatile Acids (eg AA) in waste stream.",
+    "organisation": "Praj Industries Limited.",
+    "category": "Software",
+    "bucket": "Clean Water",
+    "complexity": "Simple"
+  },
+  {
+    "title": "Biomass Size reduction with low power consumption.",
+    "organisation": "Praj Industries Limited.",
+    "category": "Hardware",
+    "bucket": "Agriculture and Rural Development",
+    "complexity": "Simple"
+  }
+]
