@@ -64,18 +64,17 @@ var scraper = async () => {
           var modalDescriptions = document.querySelectorAll(
             "#settings > thead > tr:nth-child(1) > td >div"
           );
-          //   console.log(modalDescriptions);
-          //   console.log(typeof modalDescriptions);
-          //   console.log(typeof modalDescriptions);
-          //   console.log(modalDescriptions[idea].innerText.trim());
+
           var modalYoutube = document.querySelectorAll(
             "#settings > thead > tr:nth-child(5) > td >a"
           );
-          if (typeof modalDescriptions[idea] != "undefined") {
-            ideaObject.description = modalDescriptions[idea].innerText.trim();
+          if (typeof modalDescriptions[idea - 1] != "undefined") {
+            ideaObject.description = modalDescriptions[
+              idea - 1
+            ].innerText.trim();
           }
-          if (typeof modalYoutube[idea] != "undefined") {
-            ideaObject.youtubeLink = modalYoutube[idea].innerText.trim();
+          if (typeof modalYoutube[idea - 1] != "undefined") {
+            ideaObject.youtubeLink = modalYoutube[idea - 1].innerText.trim();
           }
           ideaObject.title = document
             .querySelector(
@@ -106,36 +105,12 @@ var scraper = async () => {
         }, idea);
         console.log(ideaName);
         ideaList.push(ideaName);
-        // console.log(modals[idea].innerText.trim());
       }
     }
     fs.writeFile("sih.json", JSON.stringify(ideaList), function(err) {
       if (err) throw err;
       console.log("Saved!");
     });
-
-    // var tableScraper = await page.evaluate(() => {
-    //   const count = document.querySelector("#table_id_info");
-    //   var ideaCount = parseInt(count.innerText.trim().slice(13, 15), 10);
-    //   var list = [];
-    //   console.log(ideaCount);
-    //   var ex = document.querySelectorAll(
-    //     "#settings > thead > tr:nth-child(1) > td >div"
-    //   );
-
-    //   for (let i = 1; i < ideaCount; i++) {
-    //     console.log(ex[i].innerText.trim());
-    //     let ideaOrg = document.querySelector(
-    //       `#table_id > tbody > tr:nth-child(${i}) > td:nth-child(2)`
-    //     );
-    //     let ideaCategory = document.querySelector(
-    //       `#table_id > tbody > tr:nth-child(${i}) > td:nth-child(4)`
-    //     );
-    //     list.unshift(ideaName.innerText.trim());
-    //   }
-    //   return list;
-    // });
-    // console.log(tableScraper);
 
     await browser.close();
     console.log(success("Browser Closed"));
@@ -147,5 +122,3 @@ var scraper = async () => {
 };
 
 scraper();
-
-// #settings > thead > tr: nth - child(1) > td
