@@ -20,7 +20,7 @@ npm install
 ```
 
 - This may take a few while as it also downloads Chromium browser.
-- Now to run te script:-
+- Now to run the script:-
 
 ```
 node app.js

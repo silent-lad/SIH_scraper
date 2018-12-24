@@ -6,7 +6,7 @@ var fs = require("fs");
 const error = chalk.bold.red;
 const success = chalk.keyword("green");
 
-var scraper = async () => {
+(async () => {
   try {
     // open the headless browser
     var browser = await puppeteer.launch({ headless: false });
@@ -142,6 +142,4 @@ var scraper = async () => {
     await browser.close();
     console.log(error("Browser Closed"));
   }
-};
-
-scraper();
+})();
