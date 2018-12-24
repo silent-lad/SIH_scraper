@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const chalk = require("chalk");
+var fs = require("fs");
 
 const error = chalk.bold.red;
 const warning = chalk.keyword("orange");
@@ -8,7 +9,7 @@ const success = chalk.keyword("green");
 var scraper = async () => {
   try {
     let data;
-    var browser = await puppeteer.launch({ headless: false });
+    var browser = await puppeteer.launch({ headless: true });
     var page = await browser.newPage();
     page.setUserAgent(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36"
@@ -28,31 +29,78 @@ var scraper = async () => {
         10
       )
     );
+    var ideaList = [];
     for (let page_no = 1; page_no <= pageCount; page_no++) {
       await page.goto(
         `https://www.sih.gov.in/sih2019ProblemStatements?page=${page_no}`
       );
       await page.waitForSelector("#table_id_info");
       const ideaCount = await page.evaluate(() =>
-        parseInt(document.querySelector("#table_id_info").innerText.trim(), 10)
-      );
-      const modals = await page.evaluate(() =>
-        document.querySelectorAll(
-          "#settings > thead > tr:nth-child(1) > td >div"
+        parseInt(
+          document
+            .querySelector("#table_id_info")
+            .innerText.trim()
+            .slice(13, 15),
+          10
         )
       );
-      for (let idea = 1; idea <= ideaCount; idea++) {
-        const ideaName = await page.evaluate(() =>
-          document
+      console.log(ideaCount);
+
+      //   const modals = await page.evaluate(() =>
+      //     document.querySelectorAll(
+      //       "#settings > thead > tr:nth-child(1) > td >div"
+      //     )
+      //   );
+      //   console.log(modals[1]);
+
+      for (var idea = 1; idea <= ideaCount; idea++) {
+        const ideaName = await page.evaluate(idea => {
+          console.log(idea);
+          var ideaObject = {};
+          //   var modalDescriptions = document.querySelectorAll(
+          //     "#settings > thead > tr:nth-child(1) > td >div"
+          //   );
+          //   var modalYoutube = document.querySelectorAll(
+          //     "#settings > thead > tr:nth-child(5) > td >div"
+          //   );
+          //   ideaObject.description = modalDescriptions[idea--].innerText.trim();
+          //   ideaObject.youtubeLink = modalYoutube[idea--].innerText.trim();
+          ideaObject.title = document
             .querySelector(
               `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(3)`
             )
-            .innerText.trim()
-        );
+            .innerText.trim();
+          ideaObject.organisation = document
+            .querySelector(
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(2)`
+            )
+            .innerText.trim();
+          ideaObject.category = document
+            .querySelector(
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(4)`
+            )
+            .innerText.trim();
+          ideaObject.bucket = document
+            .querySelector(
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(6)`
+            )
+            .innerText.trim();
+          ideaObject.complexity = document
+            .querySelector(
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(7)`
+            )
+            .innerText.trim();
+          return ideaObject;
+        }, idea);
         console.log(ideaName);
-        console.log(modals[idea].innerText.trim());
+        ideaList.push(ideaName);
+        // console.log(modals[idea].innerText.trim());
       }
     }
+    fs.writeFile("sih.json", JSON.stringify(ideaList), function(err) {
+      if (err) throw err;
+      console.log("Saved!");
+    });
 
     // var tableScraper = await page.evaluate(() => {
     //   const count = document.querySelector("#table_id_info");
