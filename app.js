@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const chalk = require("chalk");
 var fs = require("fs");
 
-// MY OCD of colorful console.logs for debugging
+// MY OCD of colorful console.logs for debugging... IT HELPS
 const error = chalk.bold.red;
 const success = chalk.keyword("green");
 
