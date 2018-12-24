@@ -2,11 +2,8 @@ const puppeteer = require("puppeteer");
 const chalk = require("chalk");
 
 const error = chalk.bold.red;
-const warning = chalk.keyword("orange");
 const success = chalk.keyword("green");
 
-// var scraper = async number => {
-//   try {
 console.time("init");
 puppeteer.launch().then(browser => {
   browser
