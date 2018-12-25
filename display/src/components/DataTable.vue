@@ -23,12 +23,12 @@
             <th
               scope="col"
               @click="sort('title')"
-            >Name <i class="fas fa-sort-alpha-down float-right"></i></th>
+            >Title <i class="fas fa-sort-alpha-down float-right"></i></th>
             <th
               scope="col"
               @click="sort('description')"
-            >Email<i class="fas fa-sort-alpha-down float-right"></i></th>
-            <!-- <th scope="col">City</th> -->
+            >Description<i class="fas fa-sort-alpha-down float-right"></i></th>
+            <th scope="col">Organistion</th>
             <!-- <th scope="col">Phone </th> -->
           </tr>
         </thead>
@@ -40,7 +40,7 @@
             <td>{{index + 1}}</td>
             <td>{{idea.title}}</td>
             <td>{{idea.description}}</td>
-            <!-- <td>{{user.address.city}}</td> -->
+            <td>{{idea.organisation}}</td>
             <!-- <td>{{user.phone}}</td> -->
           </tr>
         </tbody>
@@ -61,7 +61,6 @@
 /*eslint-disable*/
 export default {
   data: () => ({
-    users: [],
     currentSort: "name",
     currentSortDir: "asc",
     search: "",
@@ -107,12 +106,12 @@ export default {
         let description = data.description
           .toLowerCase()
           .match(this.search.toLowerCase());
-        // let city = data.address.city
-        //   .toLowerCase()
-        //   .match(this.search.toLowerCase());
+        let org = data.organisation
+          .toLowerCase()
+          .match(this.search.toLowerCase());
         // let phone = data.phone.toLowerCase().match(this.search.toLowerCase());
         // return email || name || city || phone;
-        return title || description;
+        return title || description || org;
       }).filter((row, index) => {
         let start = (this.currentPage - 1) * this.pageSize;
         let end = this.currentPage * this.pageSize;
@@ -130,6 +129,15 @@ th {
   white-space: nowrap;
 }
 tr {
-  white-space: nowrap;
+  white-space: normal;
+}
+td {
+  border: 2px solid red;
+  padding: 10px;
+}
+td:nth-child(2),
+td:nth-child(1),
+td:nth-child(4) {
+  font-weight: 900;
 }
 </style>
