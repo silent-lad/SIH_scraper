@@ -18,22 +18,23 @@ const success = chalk.keyword("green");
     );
 
     // enter url in page
-    await page.goto(`https://www.sih.gov.in/sih2019ProblemStatements?page=1`);
+    await page.goto(`https://www.sih.gov.in/sih2020PS?page=1`);
     await page.waitForSelector(
       "body>div.container-fluid>div>div.intro.clearfix>div>ul>li:nth-last-child(2)>a"
     );
 
     // Get number of pages to scrape
-    const pageCount = await page.evaluate(() =>
-      parseInt(
-        document
-          .querySelector(
-            "body>div.container-fluid>div>div.intro.clearfix>div>ul>li:nth-last-child(2)>a"
-          )
-          .innerText.trim(),
-        10
-      )
-    );
+    // const pageCount = await page.evaluate(() =>
+    //   parseInt(
+    //     document
+    //       .querySelector(
+    //         "body>div.container-fluid>div>div.intro.clearfix>div>ul>li:nth-last-child(2)>a"
+    //       )
+    //       .innerText.trim(),
+    //     10
+    //   )
+    // );
+    const pageCount = 10;
 
     // List to store all the ideaList(object)
     var ideaList = [];
@@ -41,22 +42,22 @@ const success = chalk.keyword("green");
     // For Loop for each page
     for (let page_no = 1; page_no <= pageCount; page_no++) {
       // goto to the page we have to scrape
-      await page.goto(
-        `https://www.sih.gov.in/sih2019ProblemStatements?page=${page_no}`,
-        { timeout: 3000000 }
-      );
+      await page.goto(`https://www.sih.gov.in/sih2020PS?page=${page_no}`, {
+        timeout: 3000000
+      });
       await page.waitForSelector("#table_id_info");
 
       // get number of ideas on the page
-      const ideaCount = await page.evaluate(() =>
-        parseInt(
-          document
-            .querySelector("#table_id_info")
-            .innerText.trim()
-            .slice(13, 15),
-          10
-        )
-      );
+      // const ideaCount = await page.evaluate(() =>
+      //   parseInt(
+      //     document
+      //       .querySelector("#table_id_info")
+      //       .innerText.trim()
+      //       .slice(13, 15),
+      //     10
+      //   )
+      // );
+      const ideaCount = 10;
 
       // For loop to iterate on each idea on the given page
       for (var idea = 1; idea <= ideaCount; idea++) {
@@ -68,7 +69,7 @@ const success = chalk.keyword("green");
           // Getting title of the idea
           ideaObject.title = document
             .querySelector(
-              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(3)`
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(2)`
             )
             .innerText.trim();
 
@@ -89,14 +90,14 @@ const success = chalk.keyword("green");
           // Getting idea technology bucket
           ideaObject.bucket = document
             .querySelector(
-              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(6)`
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(5)`
             )
             .innerText.trim();
 
           // Getting complexity of the idea
           ideaObject.complexity = document
             .querySelector(
-              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(7)`
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(2)`
             )
             .innerText.trim();
 
@@ -139,7 +140,7 @@ const success = chalk.keyword("green");
   } catch (err) {
     // Catch and display errors
     console.log(error(err));
-    await browser.close();
+    // await browser.close();
     console.log(error("Browser Closed"));
   }
 })();

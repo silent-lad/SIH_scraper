@@ -29,19 +29,27 @@
               @click="sort('description')"
             >Description<i class="fas fa-sort-alpha-down float-right"></i></th>
             <th scope="col">Organistion</th>
-            <!-- <th scope="col">Phone </th> -->
+            <th
+              @click="sort('complexity')"
+              scope="col"
+            >Complexity </th>
+            <th scope="col">Bucket</th>
+            <th scope="col">Youtube Link </th>
           </tr>
         </thead>
         <tbody>
           <tr
             v-for="(idea, index) in (sortedActivity, filteredList)"
             :key="index"
+            :class="idea.category"
           >
             <td>{{index + 1}}</td>
-            <td>{{idea.title}}</td>
+            <td @click="toggleSelect(idea,index)">{{idea.title}}</td>
             <td>{{idea.description}}</td>
             <td>{{idea.organisation}}</td>
-            <!-- <td>{{user.phone}}</td> -->
+            <td>{{idea.complexity}}</td>
+            <td>{{idea.bucket}}</td>
+            <td><a :href="idea.youtubeLink">{{idea.youtubeLink}}</a></td>
           </tr>
         </tbody>
       </table>
@@ -69,9 +77,65 @@ export default {
     currentPage: 1
   }),
   props: {
-    Ideas: Array
+    Ideas: Array,
+    Table: String
   },
   methods: {
+    toggleSelect: function(idea, index) {
+      if (confirm("Are you sure about your actions??")) {
+        if (this.Table == "All") {
+          var selectedIdeas = this.$http
+            .get("https://sih-vue.firebaseio.com/slectedIdeas.json")
+            .then(res => {
+              if (res.body == null) {
+                res.body = [];
+              }
+              res.body.unshift(idea);
+              this.$http
+                .put(
+                  "https://sih-vue.firebaseio.com/slectedIdeas.json",
+                  res.body
+                )
+                .then(
+                  response => console.log(response),
+                  err => console.log(err)
+                );
+            });
+          // var selectedIdeas = [];
+
+          // this.Ideas.splice(this.Ideas.indexOf(idea), 1);
+          // this.$http
+          //   .put("https://sih-vue.firebaseio.com/slectedIdeas.json", this.Ideas)
+          //   .then(response => console.log(response), err => console.log(err));
+        } else {
+          console.log(idea);
+          var selectedIdeas = this.$http
+            .get("https://sih-vue.firebaseio.com/slectedIdeas.json")
+            .then(res => {
+              console.log(index);
+              res.body.splice(index, 1);
+              res.body.indexOf(idea);
+              console.log(res.body.indexOf(idea));
+              this.$http
+                .put(
+                  "https://sih-vue.firebaseio.com/slectedIdeas.json",
+                  res.body
+                )
+                .then(
+                  response => {
+                    console.log(response);
+                    this.refresh();
+                  },
+                  err => console.log(err)
+                );
+              // }
+            })
+            .catch(e => {
+              console.log(e);
+            });
+        }
+      }
+    },
     sort: function(s) {
       if (s === this.currentSort) {
         this.currentSortDir = this.currentSortDir === "asc" ? "desc" : "asc";
@@ -84,6 +148,15 @@ export default {
     },
     prevPage: function() {
       if (this.currentPage > 1) this.currentPage--;
+    },
+    refresh: function() {
+      console.log("hahhahahah");
+
+      this.$http
+        .get("https://sih-vue.firebaseio.com/slectedIdeas.json")
+        .then(res => {
+          this.Ideas = res.body;
+        });
     }
   },
   computed: {
@@ -109,9 +182,12 @@ export default {
         let org = data.organisation
           .toLowerCase()
           .match(this.search.toLowerCase());
+        let complexity = data.complexity
+          .toLowerCase()
+          .match(this.search.toLowerCase());
         // let phone = data.phone.toLowerCase().match(this.search.toLowerCase());
         // return email || name || city || phone;
-        return title || description || org;
+        return title || description || org || complexity;
       }).filter((row, index) => {
         let start = (this.currentPage - 1) * this.pageSize;
         let end = this.currentPage * this.pageSize;
@@ -123,6 +199,12 @@ export default {
 </script>
 
 <style>
+.Software {
+  background: rgba(0, 0, 200, 0.1);
+}
+.Hardware {
+  background: rgba(200, 0, 0, 0.1);
+}
 th {
   cursor: pointer;
   /* width: 500px !important; */
@@ -132,7 +214,7 @@ tr {
   white-space: normal;
 }
 td {
-  border: 2px solid red;
+  border: 1px solid red;
   padding: 10px;
 }
 td:nth-child(2),
