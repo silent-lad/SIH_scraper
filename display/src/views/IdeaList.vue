@@ -1,9 +1,6 @@
 <template>
   <div class="home">
-    <DataTable
-      :Ideas="ideaList"
-      :Table="tableName"
-    ></DataTable>
+    <DataTable :Ideas="ideaList" :Table="tableName"></DataTable>
   </div>
 </template>
 

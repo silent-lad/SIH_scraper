@@ -24,17 +24,18 @@ const success = chalk.keyword("green");
     );
 
     // Get number of pages to scrape
-    // const pageCount = await page.evaluate(() =>
-    //   parseInt(
-    //     document
-    //       .querySelector(
-    //         "body>div.container-fluid>div>div.intro.clearfix>div>ul>li:nth-last-child(2)>a"
-    //       )
-    //       .innerText.trim(),
-    //     10
-    //   )
-    // );
-    const pageCount = 10;
+    const pageCount = await page.evaluate(() =>
+      parseInt(
+        document
+          .querySelector(
+            "body>div.container-fluid>div>div.intro.clearfix>div>ul>li:nth-last-child(2)>a"
+          )
+          .innerText.trim(),
+        10
+      )
+    );
+    console.log(pageCount);
+    // const pageCount = 10;
 
     // List to store all the ideaList(object)
     var ideaList = [];
@@ -48,16 +49,16 @@ const success = chalk.keyword("green");
       await page.waitForSelector("#table_id_info");
 
       // get number of ideas on the page
-      // const ideaCount = await page.evaluate(() =>
-      //   parseInt(
-      //     document
-      //       .querySelector("#table_id_info")
-      //       .innerText.trim()
-      //       .slice(13, 15),
-      //     10
-      //   )
-      // );
-      const ideaCount = 10;
+      const ideaCount = await page.evaluate(() =>
+        parseInt(
+          document
+            .querySelector("#table_id_info")
+            .innerText.trim()
+            .slice(13, 15),
+          10
+        )
+      );
+      // const ideaCount = 10;
 
       // For loop to iterate on each idea on the given page
       for (var idea = 1; idea <= ideaCount; idea++) {
@@ -127,7 +128,7 @@ const success = chalk.keyword("green");
         ideaList.push(ideaName);
       }
     } //END of both for-loops
-
+    // console.log(ideaList);
     // Writing the ideaList inside a json file
     fs.writeFile("sih.json", JSON.stringify(ideaList), function(err) {
       if (err) throw err;
