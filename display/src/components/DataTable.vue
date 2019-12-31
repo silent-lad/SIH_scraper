@@ -1,27 +1,24 @@
 <template>
   <div class="col-md-12">
     <div class="form-group container">
-      <input
-        type="text"
-        class="form-control my-3"
-        v-model="search"
-        placeholder="Search"
-      />
+      <input type="text" class="form-control my-3" v-model="search" placeholder="Search" />
       <div class="row justify-content-center align-items-center">
         <label for="pageSize">No. of results:</label>
         <input type="number" class="form-control col-sm-1 mx-3" v-model="pageSize" />
       </div>
     </div>
     <div class="table-responsive">
-      <table class="table table-bordered" >
+      <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col" @click="sort('title')">
-              Title <i class="fas fa-sort-alpha-down float-right"></i>
+              Title
+              <i class="fas fa-sort-alpha-down float-right"></i>
             </th>
             <th scope="col" @click="sort('description')">
-              Description<i class="fas fa-sort-alpha-down float-right"></i>
+              Description
+              <i class="fas fa-sort-alpha-down float-right"></i>
             </th>
             <th scope="col">Organistion</th>
             <th @click="sort('complexity')" scope="col">PS No.</th>
@@ -37,7 +34,13 @@
           >
             <td scope="row">{{ (currentPage-1)*pageSize + index + 1 }}</td>
             <td @click="toggleSelect(idea, index)">{{ idea.title }}</td>
-            <td>{{ idea.description }}</td>
+            <td class="text-left">
+              <p
+                v-for="(desc, i) in breakPoints(idea.description)"
+                :key="i"
+              >• {{ desc }}
+              </p>
+            </td>
             <td>{{ idea.organisation }}</td>
             <td>{{ idea.psNum }}</td>
             <td>{{ idea.bucket }}</td>
@@ -49,11 +52,20 @@
       </table>
     </div>
     <div class="row justify-content-center mx-0 mt-1 mb-5">
-      <button @click="prevPage" class="btn btn-outline-info btn-sm py-2 px-3 mx-2" style="width: 20%">
+      <button
+        @click="prevPage"
+        class="btn btn-outline-info btn-sm py-2 px-3 mx-2"
+        style="width: 20%"
+      >
         <i class="fas fa-arrow-left"></i> Previous
       </button>
-      <button @click="nextPage" class="btn btn-outline-info btn-sm py-2 px-3 mx-2" style="width: 20%">
-        Next <i class="fas fa-arrow-right"></i>
+      <button
+        @click="nextPage"
+        class="btn btn-outline-info btn-sm py-2 px-3 mx-2"
+        style="width: 20%"
+      >
+        Next
+        <i class="fas fa-arrow-right"></i>
       </button>
     </div>
   </div>
@@ -75,6 +87,9 @@ export default {
     Table: String
   },
   methods: {
+    breakPoints: function(text) {
+      return text.split(/•/);
+    },
     toggleSelect: function(idea, index) {
       if (confirm("Are you sure about your actions??")) {
         if (this.Table == "All") {
