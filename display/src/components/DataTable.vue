@@ -32,7 +32,7 @@
             :key="index"
             :class="idea.category"
           >
-            <td>{{ index + 1 }}</td>
+            <td scope="row">{{ index + 1 }}</td>
             <td @click="toggleSelect(idea, index)">{{ idea.title }}</td>
             <td>{{ idea.description }}</td>
             <td>{{ idea.organisation }}</td>
@@ -171,12 +171,11 @@ export default {
         let org = data.organisation
           .toLowerCase()
           .match(this.search.toLowerCase());
-        let complexity = data.complexity
-          .toLowerCase()
-          .match(this.search.toLowerCase());
+        let psNum = data.psNum.toLowerCase().match(this.search.toLowerCase());
+        let bucket = data.bucket.toLowerCase().match(this.search.toLowerCase());
         // let phone = data.phone.toLowerCase().match(this.search.toLowerCase());
         // return email || name || city || phone;
-        return title || description || org || complexity;
+        return title || description || org || complexity || bucket;
       }).filter((row, index) => {
         let start = (this.currentPage - 1) * this.pageSize;
         let end = this.currentPage * this.pageSize;
