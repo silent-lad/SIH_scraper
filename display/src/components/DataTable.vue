@@ -35,7 +35,7 @@
             :key="index"
             :class="idea.category"
           >
-            <td scope="row">{{ index + 1 }}</td>
+            <td scope="row">{{ (currentPage-1)*pageSize + index + 1 }}</td>
             <td @click="toggleSelect(idea, index)">{{ idea.title }}</td>
             <td>{{ idea.description }}</td>
             <td>{{ idea.organisation }}</td>
