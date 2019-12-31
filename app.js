@@ -9,7 +9,7 @@ const success = chalk.keyword("green");
 (async () => {
   try {
     // open the headless browser
-    var browser = await puppeteer.launch({ headless: false });
+    var browser = await puppeteer.launch({ headless: true });
 
     // open a new page
     var page = await browser.newPage();
@@ -70,7 +70,7 @@ const success = chalk.keyword("green");
           // Getting title of the idea
           ideaObject.title = document
             .querySelector(
-              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(2)`
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(3)`
             )
             .innerText.trim();
 
@@ -91,14 +91,14 @@ const success = chalk.keyword("green");
           // Getting idea technology bucket
           ideaObject.bucket = document
             .querySelector(
-              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(5)`
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(6)`
             )
             .innerText.trim();
 
           // Getting complexity of the idea
-          ideaObject.complexity = document
+          ideaObject.psNum = document
             .querySelector(
-              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(2)`
+              `#table_id > tbody > tr:nth-child(${idea}) > td:nth-child(5)`
             )
             .innerText.trim();
 

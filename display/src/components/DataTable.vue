@@ -6,35 +6,24 @@
         class="form-control"
         v-model="search"
         placeholder="Search"
-      >
-      <input
-        type="number"
-        v-model="pageSize"
-      >
+      />
+      <input type="number" v-model="pageSize" />
     </div>
     <div class="table-responsive">
-      <table
-        class="table table-striped table-bordered"
-        style="width:100%"
-      >
+      <table class="table table-striped table-bordered" style="width:100%">
         <thead width="400px">
           <tr>
             <th scope="col">#</th>
-            <th
-              scope="col"
-              @click="sort('title')"
-            >Title <i class="fas fa-sort-alpha-down float-right"></i></th>
-            <th
-              scope="col"
-              @click="sort('description')"
-            >Description<i class="fas fa-sort-alpha-down float-right"></i></th>
+            <th scope="col" @click="sort('title')">
+              Title <i class="fas fa-sort-alpha-down float-right"></i>
+            </th>
+            <th scope="col" @click="sort('description')">
+              Description<i class="fas fa-sort-alpha-down float-right"></i>
+            </th>
             <th scope="col">Organistion</th>
-            <th
-              @click="sort('complexity')"
-              scope="col"
-            >Complexity </th>
+            <th @click="sort('complexity')" scope="col">PS No.</th>
             <th scope="col">Bucket</th>
-            <th scope="col">Youtube Link </th>
+            <th scope="col">Youtube Link</th>
           </tr>
         </thead>
         <tbody>
@@ -43,25 +32,25 @@
             :key="index"
             :class="idea.category"
           >
-            <td>{{index + 1}}</td>
-            <td @click="toggleSelect(idea,index)">{{idea.title}}</td>
-            <td>{{idea.description}}</td>
-            <td>{{idea.organisation}}</td>
-            <td>{{idea.complexity}}</td>
-            <td>{{idea.bucket}}</td>
-            <td><a :href="idea.youtubeLink">{{idea.youtubeLink}}</a></td>
+            <td>{{ index + 1 }}</td>
+            <td @click="toggleSelect(idea, index)">{{ idea.title }}</td>
+            <td>{{ idea.description }}</td>
+            <td>{{ idea.organisation }}</td>
+            <td>{{ idea.psNum }}</td>
+            <td>{{ idea.bucket }}</td>
+            <td>
+              <a :href="idea.youtubeLink">{{ idea.youtubeLink }}</a>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <button
-      @click="prevPage"
-      class="float-left btn btn-outline-info btn-sm"
-    ><i class="fas fa-arrow-left"></i> Previous</button>
-    <button
-      @click="nextPage"
-      class="float-right btn btn-outline-info btn-sm"
-    >Next <i class="fas fa-arrow-right"></i></button>
+    <button @click="prevPage" class="float-left btn btn-outline-info btn-sm">
+      <i class="fas fa-arrow-left"></i> Previous
+    </button>
+    <button @click="nextPage" class="float-right btn btn-outline-info btn-sm">
+      Next <i class="fas fa-arrow-right"></i>
+    </button>
   </div>
 </template>
 
