@@ -5,7 +5,7 @@
       <router-link to="/selected">Selected</router-link>
     </div>
     <router-view v-if="admin" />
-    <button @click="incrementCount" v-else>Seriously???</button>
+    <button @click="incrementCount" class="btn btn-danger" v-else>Seriously???</button>
   </div>
 </template>
 <script>
@@ -38,14 +38,19 @@ export default {
 }
 #nav {
   padding: 30px;
+  font-size: 2em;
 }
 
 #nav a {
-  font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
+}
+#nav a:hover {
+  color: #5e8071;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+  font-weight: bold;
 }
 </style>

@@ -1,17 +1,20 @@
 <template>
   <div class="col-md-12">
-    <div class="form-group">
+    <div class="form-group container">
       <input
         type="text"
-        class="form-control"
+        class="form-control my-3"
         v-model="search"
         placeholder="Search"
       />
-      <input type="number" v-model="pageSize" />
+      <div class="row justify-content-center align-items-center">
+        <label for="pageSize">No. of results:</label>
+        <input type="number" class="form-control col-sm-1 mx-3" v-model="pageSize" />
+      </div>
     </div>
     <div class="table-responsive">
-      <table class="table table-striped table-bordered" style="width:100%">
-        <thead width="400px">
+      <table class="table table-bordered" >
+        <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col" @click="sort('title')">
@@ -45,12 +48,14 @@
         </tbody>
       </table>
     </div>
-    <button @click="prevPage" class="float-left btn btn-outline-info btn-sm">
-      <i class="fas fa-arrow-left"></i> Previous
-    </button>
-    <button @click="nextPage" class="float-right btn btn-outline-info btn-sm">
-      Next <i class="fas fa-arrow-right"></i>
-    </button>
+    <div class="row justify-content-center mx-0 mt-1 mb-5">
+      <button @click="prevPage" class="btn btn-outline-info btn-sm py-2 px-3 mx-2" style="width: 20%">
+        <i class="fas fa-arrow-left"></i> Previous
+      </button>
+      <button @click="nextPage" class="btn btn-outline-info btn-sm py-2 px-3 mx-2" style="width: 20%">
+        Next <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -208,6 +213,6 @@ td {
 td:nth-child(2),
 td:nth-child(1),
 td:nth-child(4) {
-  font-weight: 900;
+  font-weight: 700;
 }
 </style>
