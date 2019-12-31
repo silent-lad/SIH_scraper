@@ -4,9 +4,29 @@
       <router-link to="/">All ideas</router-link> |
       <router-link to="/selected">Selected</router-link>
     </div>
-    <router-view />
+    <router-view v-if="admin" />
+    <button @click="incrementCount" v-else>Seriously???</button>
   </div>
 </template>
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      admin: false,
+      count: 0
+    };
+  },
+  methods: {
+    incrementCount() {
+      this.count++;
+      if (this.count == 6) {
+        this.admin = true;
+      }
+    }
+  }
+};
+</script>
 
 <style>
 #app {
