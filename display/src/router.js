@@ -6,6 +6,7 @@ import Selected from "./views/Selected.vue";
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: "/",
