@@ -1,11 +1,37 @@
 <template>
   <div class="col-md-12">
     <div class="form-group container">
-      <input type="text" class="form-control my-3" v-model="search" placeholder="Search" />
+      <input
+        type="text"
+        class="form-control my-3"
+        v-model="search"
+        placeholder="Search"
+      />
       <div class="row justify-content-center align-items-center">
-        <label for="pageSize">No. of results:</label>
-        <input type="number" class="form-control col-sm-1 mx-3" v-model="pageSize" />
+        <label for="pageSize">No. of results per page:</label>
+        <input
+          type="number"
+          class="form-control col-sm-1 mx-3"
+          v-model="pageSize"
+        />
       </div>
+    </div>
+    <div class="row justify-content-center mx-0 mt-1 mb-5">
+      <button
+        @click="prevPage"
+        class="btn btn-outline-info btn-sm py-2 px-3 mx-2"
+        style="width: 20%"
+      >
+        <i class="fas fa-arrow-left"></i> Previous
+      </button>
+      <button
+        @click="nextPage"
+        class="btn btn-outline-info btn-sm py-2 px-3 mx-2"
+        style="width: 20%"
+      >
+        Next
+        <i class="fas fa-arrow-right"></i>
+      </button>
     </div>
     <div class="table-responsive">
       <table class="table table-bordered">
@@ -21,7 +47,7 @@
               <i class="fas fa-sort-alpha-down float-right"></i>
             </th>
             <th scope="col">Organistion</th>
-            <th @click="sort('complexity')" scope="col">PS No.</th>
+            <th scope="col">PS No.</th>
             <th scope="col">Bucket</th>
             <th scope="col">Youtube Link</th>
           </tr>
@@ -32,13 +58,11 @@
             :key="index"
             :class="idea.category"
           >
-            <td scope="row">{{ (currentPage-1)*pageSize + index + 1 }}</td>
+            <td scope="row">{{ (currentPage - 1) * pageSize + index + 1 }}</td>
             <td @click="toggleSelect(idea, index)">{{ idea.title }}</td>
             <td class="text-left">
-              <p
-                v-for="(desc, i) in breakPoints(idea.description)"
-                :key="i"
-              >• {{ desc }}
+              <p v-for="(desc, i) in breakPoints(idea.description)" :key="i">
+                • {{ desc }}
               </p>
             </td>
             <td>{{ idea.organisation }}</td>
@@ -79,7 +103,7 @@ export default {
     currentSortDir: "asc",
     search: "",
     searchSelection: "",
-    pageSize: 5,
+    pageSize: 10,
     currentPage: 1
   }),
   props: {
@@ -107,7 +131,7 @@ export default {
                 )
                 .then(
                   response => console.log(response),
-                  err => console.log(err)
+                  err => conxsole.log(err)
                 );
             });
           // var selectedIdeas = [];
@@ -195,7 +219,7 @@ export default {
         let bucket = data.bucket.toLowerCase().match(this.search.toLowerCase());
         // let phone = data.phone.toLowerCase().match(this.search.toLowerCase());
         // return email || name || city || phone;
-        return title || description || org || complexity || bucket;
+        return title || description || org || bucket;
       }).filter((row, index) => {
         let start = (this.currentPage - 1) * this.pageSize;
         let end = this.currentPage * this.pageSize;
@@ -211,7 +235,7 @@ export default {
   background: rgba(0, 0, 200, 0.1);
 }
 .Hardware {
-  background: rgba(200, 0, 0, 0.1);
+  background: rgba(200, 0, 0, 0.1) !important;
 }
 th {
   cursor: pointer;
@@ -229,5 +253,10 @@ td:nth-child(2),
 td:nth-child(1),
 td:nth-child(4) {
   font-weight: 700;
+}
+table,
+th,
+td {
+  border: 1px solid black !important;
 }
 </style>
